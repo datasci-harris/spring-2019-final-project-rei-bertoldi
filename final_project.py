@@ -16,28 +16,30 @@ soup = BeautifulSoup(response.text, 'html.parser')
 table = soup.find('table')
 all_rows = table.find_all('tr')
 
+table
+
+
+#figure out what to do with these commas
+#figure out how to get rid of the last row 
+
 unparsed_rows = []
 for row in table.find_all('tr'):
     td_tags = row.find_all('td')
     unparsed_rows.append([val.text for val in td_tags])
-    
+ 
 unparsed_rows
 
 def row_parser(row):
-    return row.strip(',')
     return ','.join(row)
-
 
 parsed_rows = [row_parser(row) for row in unparsed_rows]
 
 parsed_rows[20]
-
+parsed_rows
 header = 'year, company, eia_id, cec_id, plant, capacity_MW, gross_MWhm, net_MWh'
 parsed_rows.insert(0, header)
 
 document = '\n'.join(parsed_rows)
-
-document
 
 path = r'C:\Users\User02\Desktop\Harris\Programming\test.csv'
 
