@@ -13,26 +13,22 @@ url = 'https://www.energy.ca.gov/almanac/renewables_data/wind/index.php'
 response = requests.get(url) 
 
 #these need to be put into a function
-soup = BeautifulSoup(response.text, 'html.parser')
 
-table = soup.find('table')
-all_rows = table.find_all('tr')
-
-unparsed_rows = []
-for row in table.find_all('tr'):
-    td_tags = row.find_all('td')
-    unparsed_rows.append([val.text.replace(',','') for val in td_tags])
-
-#after slicing 
-unparsed_rows = unparsed_rows[1:-1]
+def get_rows(response):
+    soup = BeautifulSoup(response.text, 'html.parser')
+    table = soup.find('table')
+    all_rows = table.find_all('tr')
+    unparsed_rows = []
+    for row in table.find_all('tr'):
+        td_tags = row.find_all('td')
+        unparsed_rows.append([val.text.replace(',','') for val in td_tags])
+    unparsed_rows = unparsed_rows[1:-1]
 
 def row_parser(row):
     return ','.join(row)
 
 parsed_rows = [row_parser(row) for row in unparsed_rows]
 
-parsed_rows[20]
-parsed_rows
 header = 'year, company, eia_id, cec_id, plant, state, capacity_MW, gross_MWhm, net_MWh'
 parsed_rows.insert(0, header)
 
@@ -44,7 +40,7 @@ path = r'C:\Users\User02\Desktop\Harris\Programming\test.csv'
 with open(path, 'w') as ofile:
     ofile.write(document)
     
-
+#write this damn function
 
 
 #looping the csvs in a loop
