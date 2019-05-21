@@ -11,6 +11,8 @@ from bs4 import BeautifulSoup
 url = 'https://www.energy.ca.gov/almanac/renewables_data/wind/index.php'
 
 response = requests.get(url) 
+
+
 soup = BeautifulSoup(response.text, 'html.parser')
 
 table = soup.find('table')
@@ -18,16 +20,13 @@ all_rows = table.find_all('tr')
 
 table
 
-
-#figure out what to do with these commas
-#figure out how to get rid of the last row 
-
 unparsed_rows = []
 for row in table.find_all('tr'):
     td_tags = row.find_all('td')
-    unparsed_rows.append([val.text for val in td_tags])
- 
-unparsed_rows
+    unparsed_rows.append([val.text.replace(',','') for val in td_tags])
+
+#after slicing 
+unparsed_rows = unparsed_rows[:-1]
 
 def row_parser(row):
     return ','.join(row)
@@ -62,7 +61,7 @@ my_ofile = 'path\{}.csv'
 
 for year in ['2018', '2017', '2016]:
     response = requests.post(url, data={'newYear':year})
-    soup = BeautifulSoup(response.text, 'html.parser')
-    parsed_data = my_parsing_function(soup)
+#    soup = BeautifulSoup(response.text, 'html.parser')
+    parsed_data = my_parsing_function(response)
     with open(my_ofile, 'w') as ofile:
         ofile.write(parsed_data)
