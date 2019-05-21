@@ -12,13 +12,11 @@ url = 'https://www.energy.ca.gov/almanac/renewables_data/wind/index.php'
 
 response = requests.get(url) 
 
-
+#these need to be put into a function
 soup = BeautifulSoup(response.text, 'html.parser')
 
 table = soup.find('table')
 all_rows = table.find_all('tr')
-
-table
 
 unparsed_rows = []
 for row in table.find_all('tr'):
@@ -26,7 +24,7 @@ for row in table.find_all('tr'):
     unparsed_rows.append([val.text.replace(',','') for val in td_tags])
 
 #after slicing 
-unparsed_rows = unparsed_rows[:-1]
+unparsed_rows = unparsed_rows[1:-1]
 
 def row_parser(row):
     return ','.join(row)
@@ -35,27 +33,21 @@ parsed_rows = [row_parser(row) for row in unparsed_rows]
 
 parsed_rows[20]
 parsed_rows
-header = 'year, company, eia_id, cec_id, plant, capacity_MW, gross_MWhm, net_MWh'
+header = 'year, company, eia_id, cec_id, plant, state, capacity_MW, gross_MWhm, net_MWh'
 parsed_rows.insert(0, header)
 
+#this probably can be outside of the function
 document = '\n'.join(parsed_rows)
 
 path = r'C:\Users\User02\Desktop\Harris\Programming\test.csv'
 
-for row in unparsed_rows:
-    return ','.join(row) 
-
 with open(path, 'w') as ofile:
     ofile.write(document)
     
-r','.join(row) 
 
 
 
-
-
-#looping the csvs
-response.text.find('Alta Wind VIII LLC')
+#looping the csvs in a loop
 
 my_ofile = 'path\{}.csv'
 
