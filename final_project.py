@@ -12,8 +12,6 @@ url = 'https://www.energy.ca.gov/almanac/renewables_data/wind/index.php'
 
 response = requests.get(url) 
 
-#these need to be put into a function
-
 def get_rows(response):
     soup = BeautifulSoup(response.text, 'html.parser')
     table = soup.find('table')
@@ -28,43 +26,18 @@ def get_rows(response):
 def row_parser(row):
     return ','.join(row)
 
-parsed_rows = [row_parser(row) for row in unparsed_rows]
-
-pd.DataFrame(np.array(parsed_rows
-
-header = 'year, company, eia_id, cec_id, plant, state, capacity_MW, gross_MWhm, net_MWh'
-parsed_rows.insert(0, header)
-
-#this probably can be outside of the function
-document = '\n'.join(parsed_rows)
-
-path = r'C:\Users\User02\Desktop\Harris\Programming\test.csv'
-
-with open(path, 'w') as ofile:
-    ofile.write(document)
-    
-#path = r'C:\Users\User02\Desktop\Harris\Programming\final_project'
-
-#my_ofile = r'C:\Users\User02\Desktop\Harris\Programming\final_project\{}.csv'
-
-#for year in ['2017', '2016']:
-#    response = requests.post(url, data={'newYear':year})
-#    unparsed_rows = get_rows(response)
-#    parsed_rows = [row_parser(row) for row in unparsed_rows]
-#    header = 'year, company, eia_id, cec_id, plant, state, capacity_MW, gross_MWhm, net_MWh'
-#    parsed_rows.insert(0, header)
-#    document = '\n'.join(parsed_rows)
-
 my_ofile = r'C:\Users\User02\Desktop\Harris\Programming\final_project\{}.csv'
 
-with open(my_ofile, 'w') as ofile:
-    headers = 'year, company, eia_id, cec_id, plant, state, capacity_MW, gross_MWhm, net_MWh\n'
-    ofile.write(headers)
-    for year in ['2018','2017', '2016']:
-        response = requests.post(url, data={'newYear':year})
-        unparsed_rows = get_rows(response)
-        parsed_rows = [row_parser(row) for row in unparsed_rows]
-        document = '\n'.join(parsed_rows)
-    ofile.write(document)
+for year in ['2017', '2016']:
+    response = requests.post(url, data={'newYear':year})
+    unparsed_rows = get_rows(response)
+    parsed_rows = [row_parser(row) for row in unparsed_rows]
+    header = 'year, company, eia_id, cec_id, plant, state, capacity_MW, gross_MWhm, net_MWh'
+    parsed_rows.insert(0, header)
+    document = '\n'.join(parsed_rows)
+    ofile_yr = my_ofile.format(year)
+    with open(ofile_yr, 'w') as ofile:
+        ofile.write(document)
+    
         
     
