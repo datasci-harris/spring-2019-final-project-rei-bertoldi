@@ -1,4 +1,4 @@
-year, company, eia_id, cec_id, plant, state, capacity_MW, gross_MWhm, net_MWh
+year,company,eia_id,cec_id,plant,state,capacity_MW,gross_MWhm,net_MWh
 2014,Aero Energy LLC,57774,W0285,Windridge Project (Retired 5/31/2015),CA,2.2,96,96
 2014,Alta Wind VIII LLC,57835,W0393,Alta Wind VIII LLC,CA,150.0,282719,282719
 2014,BP Wind Energy North America,50553,W0391,Edom Hills Project 1 LLC,CA,20.0,46637,46637

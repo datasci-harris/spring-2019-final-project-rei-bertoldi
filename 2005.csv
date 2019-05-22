@@ -1,2 +1,2 @@
-year, company, eia_id, cec_id, plant, state, capacity_MW, gross_MWhm, net_MWh
+year,company,eia_id,cec_id,plant,state,capacity_MW,gross_MWhm,net_MWh
 2005,Not Available,Missing,W9999,CAISO In-State Wind Generation,CA,2089.2,4084050,4084050

@@ -1,3 +1,3 @@
-year, company, eia_id, cec_id, plant, state, capacity_MW, gross_MWhm, net_MWh
+year,company,eia_id,cec_id,plant,state,capacity_MW,gross_MWhm,net_MWh
 2009,Los Angeles Department of Water & Power (LADWP),56433,W0368,Pine Tree Wind Power Plant,CA,120.0,101840,101840
 2009,Not Available,Missing,W9999,CAISO In-State Wind Generation,CA,2608.4,6146750,6146750

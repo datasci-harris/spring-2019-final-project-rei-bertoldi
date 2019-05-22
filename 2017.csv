@@ -1,4 +1,4 @@
-year, company, eia_id, cec_id, plant, state, capacity_MW, gross_MWhm, net_MWh
+year,company,eia_id,cec_id,plant,state,capacity_MW,gross_MWhm,net_MWh
 2017,Alta Wind VIII LLC,57835,W0393,Alta Wind VIII LLC,CA,150.0,251380,251380
 2017,BP Wind Energy North America,50553,W0391,Edom Hills Project 1 LLC,CA,20.0,42858,42858
 2017,CalWind Resources Inc,10191,W0284,Wind Resource I (Calwind Wind Resource I),CA,8.7,14072,14072
