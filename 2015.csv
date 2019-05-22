@@ -1,0 +1,132 @@
+year, company, eia_id, cec_id, plant, state, capacity_MW, gross_MWhm, net_MWh
+2015,Aero Energy LLC,57774,W0285,Windridge Project (Retired 5/31/2015),CA,2.2,0,0
+2015,Alta Wind VIII LLC,57835,W0393,Alta Wind VIII LLC,CA,150.0,231523,231523
+2015,BP Wind Energy North America,50553,W0391,Edom Hills Project 1 LLC,CA,20.0,43414,43414
+2015,CalWind Resources Inc,10191,W0284,Wind Resource I (Calwind Wind Resource I),CA,8.7,12097,12097
+2015,CalWind Resources Inc,54909,W0320,Wind Resource II (Calwind),CA,20.0,35263,35263
+2015,Coram California Development LP,57962,W0408,Coram California Development LP,CA,102.0,237349,237349
+2015,Coram Energy Group Ltd,54298300,W0294,CTV Management Group - 6089 - Merged with W0263 - 12/31/2015,CA,4.5,10140,10140
+2015,Difwinds Farm Ltd V,54685,W0386,Difwind Farms LTD V,CA,11.6,15874,15874
+2015,EUI Management PH Inc,10027,W0268,EUIPH Wind Farm,CA,25.5,41008,41008
+2015,EverPower Wind Holdings Inc,57833,W0406,Mustang Hills LLC (Alta Wind VI Energy Center),CA,150.0,252833,252833
+2015,Foundation Windpower,57594,W0395,Teichert Vernalis,CA,1.5,1598,1598
+2015,Foundation Windpower,57626,W0396,Safeway Tracy,CA,2.0,2325,2325
+2015,Foundation Windpower,57792,W0397,IEUA,CA,1.0,467,467
+2015,Foundation Windpower,57791,W0398,Anheuser-Busch,CA,1.5,2170,2170
+2015,Foundation Windpower,58112,W0399,Cemex Madison,CA,1.0,1405,1405
+2015,Foundation Windpower,58105,W0400,Wal-Mart Red Bluff,CA,1.0,1889,1889
+2015,Foundation Windpower,58113,W0401,Robertsons Ready-Mix,CA,2.0,7510,7510
+2015,Foundation Windpower,58114,W0402,Nestle Waters,CA,3.2,12735,12735
+2015,Foundation Windpower,58102,W0403,Cemex BMQ,CA,3.0,2926,2926
+2015,Foundation Windpower,58105,W0404,Cemex River Plant,CA,3.2,2581,2581
+2015,Foundation Windpower,58104,W0405,Superior Farms,CA,1.0,1521,1521
+2015,Foundation Windpower,Missing,W0456,Anheuser-Busch #2,CA,1.6,2463,2463
+2015,FPL Energy Operating Services Inc,54647,W0270,Terra-Gen Mojave Windfarms (TPC Wind Farms - Tehachapi Power Purchase Trust),CA,28.4,56134,56134
+2015,FPL Energy Operating Services Inc,52143,W0312,Mojave 3 (Mojave 3-4-5 (Desertwind II PPC Trust) - 6113),CA,23.5,53314,53314
+2015,FPL Energy Operating Services Inc,50536,W0357,Solano Wind 12 (SMUD Solano Phase 2),CA,102.2,212781,212781
+2015,FPL Energy Operating Services Inc,55152,W0358,Shiloh I Wind (Victory Garden Prtnr PHIV),CA,150.0,417393,417393
+2015,FPL Energy Operating Services Inc,50823,W0364,Dillon Wind,CA,45.0,137463,137463
+2015,FPL Energy Operating Services Inc,52143,W0365,Difwind Farms LTD I,CA,7.2,11792,11792
+2015,FPL Energy Operating Services Inc,52143,W0366,Difwind Farms LTD II,CA,5.4,5634,5634
+2015,Green Ridge Service LLC,Missing,W0336,Altamont Infrastructure Company - 01W144 - Retired 11/1/2015,CA,34.7,18838,18838
+2015,Green Ridge Service LLC,Missing,W0348,Flowind 3-4 - Retired 10/31/2015,CA,5.0,6756,6756
+2015,Hatchet Ridge Wind LLC,56654,W0369,Hatchet Ridge Wind LLC,CA,101.2,266264,266264
+2015,International Turbine Research,10005,W0354,International Turbine Research Inc. (Retired June 14 2018),CA,18.6,27015,27015
+2015,Los Angeles Department of Water & Power (LADWP),56433,W0368,Pine Tree Wind Power Plant,CA,135.0,137070,137070
+2015,Mesa Wind Power Corporation,50535,W0260,Mesa Wind Power Corporation,CA,29.9,9323,9323
+2015,Mojave 16/17/18 LLC,50822,W0313,Mojave 16 17 18 (Mojave 16-17-18  (Desertwind III PPC Trust) - 6063-6114),CA,83.1,97766,97766
+2015,NextEra Energy Resources LLC,57201,W0371,FPL Energy Montezuma Winds LLC,CA,36.8,97109,97109
+2015,NextEra Energy Resources LLC,57701,W0392,Montezuma Wind II,CA,78.2,219504,219504
+2015,NextEra Energy Resources LLC,57700,W0394,Vasco Wind Energy Center,CA,78.2,247875,247875
+2015,NextEra Energy Resources LLC,50013,W0423,Diablo Wind LLC,CA,18.0,63229,63229
+2015,North Sky River Energy LLC,58121,W0414,North Sky River LLC,CA,160.0,405281,405281
+2015,Not Available,50552,W0258,Cabazon Wind Partners LLC,CA,40.9,104409,104409
+2015,Not Available,50532,W0271,Wind Stream Operations 6039 (Zond Systems  Inc - 6039),CA,6.3,6517,6517
+2015,Not Available,50532,W0272,Wind Stream Operations 6040 (Zond Systems  Inc - 6040),CA,6.7,8520,8520
+2015,Not Available,50532,W0273,Wind Stream Operations 6041 (Zond Systems  Inc - 6041),CA,4.5,6342,6342
+2015,Not Available,56570,W0274,Wind Stream Operations 6042 (Zond Systems  Inc - 6042),CA,6.3,9236,9236
+2015,Not Available,52161,W0275,85A (Zond Systems  Inc - 6043),CA,14.1,13346,13346
+2015,Not Available,52163,W0276,85B (Zond Systems  Inc - 6044),CA,21.1,17296,17296
+2015,Not Available,50536,W0289,Sky River Partnership (ESI Energy  Inc - 6065),CA,76.9,130590,130590
+2015,Not Available,Missing,W0304,Victory Gardens IV (6103),CA,20.7,31616,31616
+2015,Not Available,52161,W0306,Terra-Gen 251 Wind (Zond Monolith X),CA,15.7,21615,21615
+2015,Not Available,Missing,W0310,Wind Stream Operations 6111 (AES Tehachapi Wind - Zond Systems  Inc - Northwind),CA,6.3,6540,6540
+2015,Not Available,50533,W0311,Painted Hills Wind Developers (Zond Systems Inc - 6112),CA,19.2,31805,31805
+2015,Not Available,50534,W0331,Santa Clara 85C - Decommissioned 7/1/2016,CA,16.0,23035,23035
+2015,Oasis Power Partners LLC,56302,W0385,Oasis Power Partners LLC,CA,60.0,154183,154182
+2015,Pettern Energy (Ocotillo LLC),57514,W0409,Ocotillo Express LLC,CA,265.4,538350,538350
+2015,Ridgetop Energy LLC,54931,W0265,Ridgetop Energy II (Cannon Energy Corp),CA,46.9,130227,130227
+2015,Ridgetop Energy LLC,10597,W0297,Ridgetop Energy (Cannon Energy Corp - 6092),CA,28.5,55652,55652
+2015,San Gorgornio Farms Inc,50281,W0261,San Gorgonio Farms Wind Farm,CA,31.0,79200,79200
+2015,San Gorgornio Farms Inc,10718,W0286,Karen Avenue Wind Farm,CA,11.7,28755,28755
+2015,Seawest Energy Group,54258,W0277,Phoenix Wind (Section 20 Trust),CA,2.1,5798,5798
+2015,Seawest Energy Group,50820,W0278,East Winds Project (NAWP Inc),CA,4.2,4930,4930
+2015,Seawest Energy Group,40485,W0292,Altech III (NAWP Inc. - 6087),CA,25.1,29139,29139
+2015,Seawest Energy Group,Missing,W0298,Seawest Industries  Inc San Jacinto - Retired 11/1/2015,CA,1.6,89,89
+2015,Seawest Energy Group,57302,W0299,Green Power I (Dutch Energy Corp),CA,16.5,25399,25399
+2015,Seawest Energy Group,56075,W0355,High Winds,CA,162.0,344619,344619
+2015,Seawest Energy Group,58092,W0356,Solano Wind 3 (SMUD Solano Phase 1),CA,127.8,357541,357541
+2015,See WPRS for details,Missing,W0259,Mogul Energy,CA,4.0,1504,1504
+2015,See WPRS for details,50386,W0262,Windland Inc Boxcar I,CA,7.3,10878,10878
+2015,See WPRS for details,Missing,W0266,CTV Management Group - 6029 - Merged with W0463 - 12/31/2015,CA,7.5,19158,19158
+2015,See WPRS for details,54299,W0280,CTV Management Group - Merged with W0463 - 12/31/2015,CA,3.0,8592,8592
+2015,See WPRS for details,Missing,W0301,Windland Inc Boxcar II,CA,7.8,13034,13034
+2015,See WPRS for details,50754,W0319,Oak Creek Wind Power,CA,31.5,54514,54514
+2015,See WPRS for details,50712,W0322,Altamont Pass Windplant -Retired 11/1/2015,CA,87.6,15548,15548
+2015,See WPRS for details,Missing,W0333,ALTAMONT-  01W035 - Retired 10/31/2015,CA,50.0,74709,74709
+2015,See WPRS for details,Missing,W0337,ALTAMONT - 01W146A - Retired 10/31/2015,CA,30.0,49080,49080
+2015,See WPRS for details,Missing,W0340,ALTAMONT - 01W146D - Retired 11/1/2015,CA,15.0,4735,4735
+2015,See WPRS for details,50001,W0346,Altamont Midway Ltd - Retired 4/1/2015,CA,9.0,0,0
+2015,See WPRS for details,Missing,W0347,ALTAMONT - 16W011 - Retired 10/31/2015,CA,10.0,16974,16974
+2015,See WPRS for details,Missing,W0353,Dyer Road - Retired 4/1/2015,CA,7.4,0,0
+2015,See WPRS for details,10586,W0360,Mountain View III,CA,22.4,71124,71124
+2015,See WPRS for details,54686,W0374,Difwind Farms Ltd VI,CA,23.3,29361,29360
+2015,See WPRS for details,10815,W0375,Difwind VII - Retired 11/1/2015,CA,21.4,23781,23781
+2015,See WPRS for details,Missing,W0377,DifWind IX - Retired 11/1/2015,CA,13.6,10392,10392
+2015,See WPRS for details,54453,W0380,EDF Renewable Windfarm V Inc (ENXCO V),CA,15.9,30288,30288
+2015,See WPRS for details,Missing,W0382,Alta Mesa Phase III - In Litigation - No reporting,CA,28.2,14449,14449
+2015,See WPRS for details,Missing,W0390,Golden Acorn Casino,CA,1.0,3529,3529
+2015,See WPRS for details,Missing,W0413,WAGNER WIND LLC,CA,6.0,16158,16158
+2015,See WPRS for details,Missing,W0420,Manzana Wind,CA,189.0,454682,454682
+2015,See WPRS for details,Missing,W0421,Shiloh III Wind Project LLC,CA,102.5,269955,269955
+2015,See WPRS for details,Missing,W0422,Shiloh IV Wind Project LLC,CA,100.0,300765,300765
+2015,See WPRS for details,Missing,W0426,Buena Vista Energy LLC,CA,38.0,98279,98279
+2015,See WPRS for details,Missing,W0429,Helzel & Schwarzhoff 88 (Decommissioned 3/31/2016),CA,1.5,2157,2157
+2015,See WPRS for details,Missing,W0430,Mountain View IV,CA,49.0,159388,159388
+2015,See WPRS for details,Missing,W0437,Wintec Energy #2-A,CA,1.3,3974,3974
+2015,See WPRS for details,59236,W0438,Rising Tree Wind Farm III,CA,99.0,177239,177239
+2015,See WPRS for details,Missing,W0439,Dutch Energy Wind Farm,CA,9.5,18475,18475
+2015,See WPRS for details,Missing,W0440,Garnet Wind Energy Center,CA,6.5,18470,18470
+2015,See WPRS for details,Missing,W0441,Alta X Wind Energy Center,CA,136.8,309409,309409
+2015,See WPRS for details,Missing,W0442,Alta XI Wind Energy Center,CA,89.7,223610,223610
+2015,See WPRS for details,Missing,W0443,Mojave 4,CA,29.0,62277,62277
+2015,See WPRS for details,Missing,W0444,Mojave 5,CA,22.5,55853,55853
+2015,See WPRS for details,Missing,W0445,Coram Tehachapi LP,CA,6.5,11022,11022
+2015,See WPRS for details,Missing,W0446,Windpower Partners 1992  L.P - Retired 11/1/2015,CA,30.0,16640,16640
+2015,See WPRS for details,Missing,W0447,San Gorgonio Wind,CA,49.5,180107,180107
+2015,See WPRS for details,Missing,W0449,Terra-Gen VG Wind,CA,7.4,12690,12690
+2015,See WPRS for details,Missing,W0450,Mountain View I,CA,44.4,130223,130223
+2015,See WPRS for details,Missing,W0451,Mountain View II,CA,22.2,69489,69489
+2015,See WPRS for details,Missing,W0452,Cabazon Wind,CA,39.0,57038,57038
+2015,See WPRS for details,Missing,W0453,Windpower Partners 1991  L.P. - Retired 11/1/2015,CA,16.3,3783,3783
+2015,See WPRS for details,Missing,W0455,City of Soledad,CA,1.0,2932,2932
+2015,See WPRS for details,Missing,W0457,Taylor Farms,CA,1.0,2441,2441
+2015,See WPRS for details,Missing,W0458,Rising Tree Wind Farm I,CA,79.2,197511,197511
+2015,See WPRS for details,Missing,W0459,Rising Tree Wind Farm II,CA,19.8,46622,46622
+2015,See WPRS for details,60049,W0461,Golden Hills,CA,85.9,10028,10028
+2015,Shiloh III Wind Project,56874,W0384,Shiloh Wind Project 2 LLC (Shiloh II & III),CA,150.0,412937,412937
+2015,Terra-Gen Operating Company,50690,W0283,San Gorgonio Westwinds II,CA,43.4,114786,114785
+2015,Terra-Gen Operating Company,52161,W0359,Kumeyaay Wind Farm,CA,50.0,132710,132710
+2015,Terra-Gen Operating Company,54931,W0361,Whitewater Hill Partners LLC,CA,61.5,144060,144060
+2015,Terra-Gen Operating Company,57757,W0367,Pacific Wind Project LLC,CA,140.0,267080,267080
+2015,Terra-Gen Operating Company,57282,W0370,Alta I Wind Energy Center,CA,150.0,341337,341337
+2015,Terra-Gen Operating Company,57291,W0372,Alta II Wind Energy Center,CA,150.0,279829,279829
+2015,Terra-Gen Operating Company,57292,W0387,Alta III Wind Energy Center,CA,150.0,300280,300280
+2015,Terra-Gen Operating Company,57293,W0388,Alta IV Wind Energy Center,CA,102.0,134743,134743
+2015,Terra-Gen Operating Company,57294,W0389,Alta V Wind Energy Center,CA,168.0,220011,220011
+2015,Terra-Gen Operating Company,10586,W0407,Cameron Ridge,CA,59.7,152562,152562
+2015,Terra-Gen Operating Company,57834,W0415,Pinyon Pines Winds I,CA,168.0,288517,288517
+2015,Terra-Gen Operating Company,57837,W0416,Pinyon Pines Winds II,CA,132.0,202585,202585
+2015,Westwind Association,Missing,W0300,Westwind Partners LLC (ENXCO) - Decommissioned 7/1/2016,CA,9.1,9784,9784
+2015,Windpower Partners 1993 LP,50276,W0318,Wintec Energy Ltd.,CA,2.0,3110,3110
+2015,Windstar Energy LLC,57774,W0419,Windstar Energy LLC,CA,120.0,249713,249713
