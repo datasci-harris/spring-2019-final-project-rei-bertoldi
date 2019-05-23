@@ -52,7 +52,7 @@ base_path = r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-ber
 
 dfs = []
 
-for file in os.listdir(path):
+for file in os.listdir(base_path):
     if not file.endswith('.csv'):
         continue
     df = pd.read_csv(os.path.join(base_path, file))
@@ -64,6 +64,17 @@ len(wind_energy.index.values)
 net_energy = wind_energy.groupby('year', as_index=False).sum()
 #plot
 import matplotlib.pyplot as plt
+fig, ax = plt.subplots(figsize=(12,6))
+x = net_energy['year']
+y = net_energy['net_MWh']
+#[new_df['REGION'] == 'MIDWEST'].groupby('DATE')['UNEMP_RATE'].mean().plot(color='m',label='Midwest')
+plt.plot(x,y, color='m')
+plt.title('Average Net megawatt-hour(MWh) in California', fontsize=20)
+ax.set_ylabel('Net MWh', fontsize=18)
+ax.set_xlabel('Year', fontsize=18)
+ax.spines['right'].set_visible(False)
+ax.spines['top'].set_visible(False)
+#plt.savefig(base_path + r'\myfig.png')
 
 #looking at the contributions of each company 
 unique_values = wind_energy.groupby(['year', 'company']).size().reset_index().rename(columns={0:'unique'})
@@ -74,7 +85,17 @@ unique_values = wind_energy.groupby(['year', 'company']).size().reset_index().re
     #seawest 
     
 company_energy = wind_energy.groupby(['company','year'], as_index=False)['net_MWh'].sum()
-filtered_energy = company_energy[company_energy["company"].isin([""]), :]
+
+
+filtered_energy = company_energy[company_energy['company'].isin(['Seawest Energy Group']), :]
+
+filtered_energy = company_energy.loc[(company_energy['company'] == 'Seawest Energy Group') | 
+        (company_energy['company'] == 'Foundation Windpower') | 
+        (company_energy['company'] == 'Terra-Gen Operating Company') |
+        (company_energy['company'] == 'FPL Energy Operating Services Inc')] 
+
+fig, ax = plt.subplots(figsize = (8,6))
+filtered_energy.groupby(['year','company'], as_index=False).mean().plot()
 
 
 
