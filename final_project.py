@@ -60,6 +60,7 @@ for file in os.listdir(base_path):
     
 wind_energy = pd.concat(dfs, axis=0, ignore_index=True)
 len(wind_energy.index.values)
+
 #net energy over time
 net_energy = wind_energy.groupby('year', as_index=False).sum()
 #plot
@@ -75,22 +76,13 @@ ax.spines['right'].set_visible(False)
 ax.spines['top'].set_visible(False)
 #plt.savefig(base_path + r'\myfig.png')
 
-#some data exploration
-unique_values = wind_energy.groupby(['year', 'company']).size().reset_index().rename(columns={0:'unique'})
-#big four:
-    #foundation wind power
-    #terra-gen operating company
-    #FPL energy
-    #seawest 
-
 #which companies are producing the greatest net MWh?
 wind_energy['year'] = pd.to_datetime(wind_energy['year'], format='%Y')
-test = wind_energy.groupby(['year','company'], as_index=False).sum()
-#FPL Energy Operating Services Inc
-#Terra-Gen Operating Company
-#Seawest Energy Group
+sum_year_company = wind_energy.groupby(['year','company'], as_index=False).sum()
+#highest producing companies: FPL Energy Operating Services Inc, Terra-Gen Operating Company, Seawest Energy Group
 
-fig, ax = plt.subplots(figsize = (8,6))
+#plotting the average productions of the highest producing companies
+fig, ax = plt.subplots(figsize = (12,6))
 wind_energy[wind_energy['company'] == 'FPL Energy Operating Services Inc'].groupby('year')['net_MWh'].mean().plot(color = 'b', label='FPL Energy Operating Services Inc')
 wind_energy[wind_energy['company'] == 'Terra-Gen Operating Company'].groupby('year')['net_MWh'].mean().plot(color = 'm', label='Terra-Gen Operating Company')
 wind_energy[wind_energy['company'] == 'Seawest Energy Group'].groupby('year')['net_MWh'].mean().plot(color = 'g', label='Seawest Energy Group')
@@ -101,12 +93,23 @@ plt.title('Average Net MWh, Top Producing Companies', fontsize=20)
 ax.set_ylabel('Net MWh', fontsize=18)
 ax.set_xlabel('Year', fontsize=18)
 
+#comparing total consumption in california and wind energy production
+consumption = pd.read_csv(r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\ca_electricity_consumption.csv')
+total_consumption = consumption[consumption['Sector'] == 'Total']
+total_consumption = total_consumption.drop(columns='Sector')
+total_consumption = total_consumption.melt(id_vars='County', var_name='year', value_name='Consumption')
+sum_consumption = total_consumption.groupby(['year'], as_index=False).sum()
+#also possible to find the sum using: total_consumption.sum(axis=0), this just uses melt
 
+#quick plot to see what is going on
+fig, ax = plt.subplots(figsize=(12,6))
+x = sum_consumption['year']
+y = sum_consumption['Consumption']
+plt.plot(x,y, color='m')
 
+#see what percent wind energy accounts for each year 
+net_to_merge = net_energy[['year', 'net_MWh']]
+merged_data = pd.merge(net_to_merge, sum_consumption, on='year', how='right')
 
-
-
-#
-    
 
     
