@@ -67,7 +67,6 @@ import matplotlib.pyplot as plt
 fig, ax = plt.subplots(figsize=(12,6))
 x = net_energy['year']
 y = net_energy['net_MWh']
-#[new_df['REGION'] == 'MIDWEST'].groupby('DATE')['UNEMP_RATE'].mean().plot(color='m',label='Midwest')
 plt.plot(x,y, color='m')
 plt.title('Average Net megawatt-hour(MWh) in California', fontsize=20)
 ax.set_ylabel('Net MWh', fontsize=18)
@@ -76,26 +75,32 @@ ax.spines['right'].set_visible(False)
 ax.spines['top'].set_visible(False)
 #plt.savefig(base_path + r'\myfig.png')
 
-#looking at the contributions of each company 
+#some data exploration
 unique_values = wind_energy.groupby(['year', 'company']).size().reset_index().rename(columns={0:'unique'})
 #big four:
     #foundation wind power
     #terra-gen operating company
     #FPL energy
     #seawest 
-    
-company_energy = wind_energy.groupby(['company','year'], as_index=False)['net_MWh'].sum()
 
-
-filtered_energy = company_energy[company_energy['company'].isin(['Seawest Energy Group']), :]
-
-filtered_energy = company_energy.loc[(company_energy['company'] == 'Seawest Energy Group') | 
-        (company_energy['company'] == 'Foundation Windpower') | 
-        (company_energy['company'] == 'Terra-Gen Operating Company') |
-        (company_energy['company'] == 'FPL Energy Operating Services Inc')] 
+#which companies are producing the greatest net MWh?
+wind_energy['year'] = pd.to_datetime(wind_energy['year'], format='%Y')
+test = wind_energy.groupby(['year','company'], as_index=False).sum()
+#FPL Energy Operating Services Inc
+#Terra-Gen Operating Company
+#Seawest Energy Group
 
 fig, ax = plt.subplots(figsize = (8,6))
-filtered_energy.groupby(['year','company'], as_index=False).mean().plot()
+wind_energy[wind_energy['company'] == 'FPL Energy Operating Services Inc'].groupby('year')['net_MWh'].mean().plot(color = 'b', label='FPL Energy Operating Services Inc')
+wind_energy[wind_energy['company'] == 'Terra-Gen Operating Company'].groupby('year')['net_MWh'].mean().plot(color = 'm', label='Terra-Gen Operating Company')
+wind_energy[wind_energy['company'] == 'Seawest Energy Group'].groupby('year')['net_MWh'].mean().plot(color = 'g', label='Seawest Energy Group')
+ax.legend(frameon=False)
+ax.spines['right'].set_visible(False)
+ax.spines['top'].set_visible(False)
+plt.title('Average Net MWh, Top Producing Companies', fontsize=20)
+ax.set_ylabel('Net MWh', fontsize=18)
+ax.set_xlabel('Year', fontsize=18)
+
 
 
 
