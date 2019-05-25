@@ -63,8 +63,10 @@ len(wind_energy.index.values)
 
 #net energy over time
 net_energy = wind_energy.groupby('year', as_index=False).sum()
+
 #plot
 import matplotlib.pyplot as plt
+
 fig, ax = plt.subplots(figsize=(12,6))
 x = net_energy['year']
 y = net_energy['net_MWh']
@@ -94,7 +96,7 @@ ax.set_ylabel('Net MWh', fontsize=18)
 ax.set_xlabel('Year', fontsize=18)
 
 #comparing total consumption in california and wind energy production
-consumption = pd.read_csv(r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\ca_electricity_consumption.csv')
+consumption = pd.read_csv(r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\consumption\ca_electricity_consumption.csv')
 total_consumption = consumption[consumption['Sector'] == 'Total']
 total_consumption = total_consumption.drop(columns='Sector')
 total_consumption = total_consumption.melt(id_vars='County', var_name='year', value_name='Consumption')
@@ -112,6 +114,18 @@ net_to_merge = net_energy[['year', 'net_MWh']]
 net_to_merge['year']=net_to_merge['year'].astype(int) 
 sum_consumption['year']=sum_consumption['year'].astype(int) 
 merged_data = pd.merge(net_to_merge, sum_consumption, on='year', how='right')
+#convert KWh to MWh
+merged_data['Consumption'] = merged_data['Consumption'].apply(lambda x: x*1000)
+merged_data['Percent'] = merged_data['net_MWh']/merged_data['Consumption']
+merged_data['Percent_Pretty'] = merged_data['Percent'].map(lambda c:'{}%'.format(round(c*100,2)))
+
+#plotting the percent of wind energy production by consumption 
+fig, ax = plt.subplots(figsize=(12,6))
+x = merged_data['year']
+y = merged_data['Percent']
+plt.plot(x,y, color='m')
+#percent of wind energy production supplied, controlling for consumption has risen 
+
 
 
     
