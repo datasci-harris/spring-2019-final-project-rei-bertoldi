@@ -74,7 +74,7 @@ ax.set_ylabel('Net MWh', fontsize=18)
 ax.set_xlabel('Year', fontsize=18)
 ax.spines['right'].set_visible(False)
 ax.spines['top'].set_visible(False)
-#plt.savefig(base_path + r'\myfig.png')
+plt.savefig(r'C:\Users\User02\Desktop\Harris\EnvironmentalPolicy\net_energy_plt.png')
 
 #which companies are producing the greatest net MWh?
 wind_energy['year'] = pd.to_datetime(wind_energy['year'], format='%Y')
@@ -109,6 +109,8 @@ plt.plot(x,y, color='m')
 
 #see what percent wind energy accounts for each year 
 net_to_merge = net_energy[['year', 'net_MWh']]
+net_to_merge['year']=net_to_merge['year'].astype(int) 
+sum_consumption['year']=sum_consumption['year'].astype(int) 
 merged_data = pd.merge(net_to_merge, sum_consumption, on='year', how='right')
 
 
