@@ -103,7 +103,7 @@ lastyear = ['https://www.energy.ca.gov/almanac/electricity_data/total_system_pow
 urls.extend(otheryears)
 urls.extend(lastyear)
 
-year_range = range(2003,2017)
+year_range = range(2002,2017)
 zipped_years = zip(year_range,urls)
 
 def get_rows_electric(response, year):
@@ -113,8 +113,7 @@ def get_rows_electric(response, year):
     unparsed_rows = []
     for row in table.find_all('tr'):
         td_tags = row.find_all('td')
-        row_lst = [val.text.replace(',','') for val in td_tags]
-        row_lst = [val.text.replace('-','') for val in td_tags]
+        row_lst = [val.text.replace(',','').replace('-','').replace('\xa0','') for val in td_tags]
         row_lst.append(str(year))
         unparsed_rows.append(row_lst)
     unparsed_rows = unparsed_rows[1:-1]
