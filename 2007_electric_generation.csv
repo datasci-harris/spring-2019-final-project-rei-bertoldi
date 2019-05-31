@@ -1,0 +1,11 @@
+fuel_type,in_state_generation_GWh,percent_generation,northwest_imports_GWh,southwest_imports_GWh,energy_mix_GWh,power_mix,year
+Coal*,4190,6546,39275,50011,16.56%,2007
+Large Hydro,23283,12494,2686,38463,12.73%,2007
+Natural Gas,118228,1837,16363,136428,45.16%,2007
+Nuclear,35692,629,8535,44856,14.85%,2007
+Renewables,28463,3163,688,32314,10.70%,2007
+Biomass,5398,837,1,6236,2.06%,2007
+Geothermal,12999,0,440,13439,4.45%,2007
+Small Hydro,3675,1469,18,5162,1.71%,2007
+Solar,668,0,7,675,0.22%,2007
+Wind,5723,857,222,6802,2.25%,2007

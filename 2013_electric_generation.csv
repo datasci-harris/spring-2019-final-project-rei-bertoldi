@@ -1,0 +1,14 @@
+fuel_type,in_state_generation_GWh,percent_generation,northwest_imports_GWh,southwest_imports_GWh,energy_mix_GWh,power_mix,year
+Coal,1018,0.51%,812,21363,23193,7.82%,2013
+Large Hydro,20754,10.39%,96,2159,23009,7.76%,2013
+Natural Gas,120863,60.50%,1241,9319,131423,44.31%,2013
+Nuclear,17860,8.94%,0,8357,26217,8.84%,2013
+Oil,38,0.02%,0,0,38,0.01%,2013
+Other,14,0.01%,0,0,14,0.00%,2013
+Renewables,39236,19.64%,13187,3256,55679,18.77%,2013
+Biomass,6423,3.21%,1485,21,7929,2.67%,2013
+Geothermal,12485,6.25%,212,495,13192,4.45%,2013
+Small Hydro,3343,1.67%,470,0,3813,1.29%,2013
+Solar,4291,2.15%,58,1040,5389,1.82%,2013
+Wind,12694,6.35%,10962,1700,25356,8.55%,2013
+Unspecified Sources of Power,N/A,N/A,19750,17305,37055,12.49%,2013
