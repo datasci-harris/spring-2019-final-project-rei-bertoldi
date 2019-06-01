@@ -94,8 +94,6 @@ plt.title('Average Net MWh, Top Producing Companies', fontsize=20)
 ax.set_ylabel('Net MWh', fontsize=18)
 ax.set_xlabel('Year', fontsize=18)
 
-
-
 #scrapping in electric generation data
 urls = ['https://www.energy.ca.gov/almanac/electricity_data/system_power/{}_gross_system_power.html'.format(year) for year in range(2002, 2007)]
 otheryears = ['https://www.energy.ca.gov/almanac/electricity_data/system_power/{}_total_system_power.html'.format(year) for year in range(2007, 2016)]
@@ -139,11 +137,8 @@ for year, url in zipped_years:
     print(ofile_yr)
     with open(ofile_yr, 'w') as ofile:
         ofile.write(document)
-#year 2009-2016 
-#year 2008-2003 
 
 #importing electric generation data
-
 base_path = r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi'
 
 dfs = []
@@ -156,7 +151,20 @@ for file in os.listdir(base_path):
     
 electric_energy = pd.concat(dfs, axis=0, ignore_index=True)
 
-#comparing total consumption in california and wind energy production
+#getting sums of annual electricity generation
+def get_sums(df):
+    df.loc[(df['in_state_generation_GWh'] == ' N/A ')] = 'nan'
+    df['in_state_generation_GWh'] = df['in_state_generation_GWh'].apply(pd.to_numeric, errors='coerce')
+    df = df.groupby(['year'], as_index=False).sum()
+    df = df[:-1]
+    return(df)
+
+annual_generation = get_sums(electric_energy)
+
+
+
+
+
 consumption = pd.read_csv(r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\consumption\ca_electricity_consumption.csv')
 total_consumption = consumption[consumption['Sector'] == 'Total']
 total_consumption = total_consumption.drop(columns='Sector')
