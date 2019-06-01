@@ -1,4 +1,4 @@
-fuel_type,in_state_generation_GWh,percent_generation,northwest_imports_GWh,southwest_imports_GWh,energy_mix_GWh,power_mix,year
+fuel_type,in_state_generation_GWh,northwest_imports_GWh,southwest_imports_GWh,gross_system_power,percent_gross_system_power,year
 Coal,28589,6161,26901,61651,21.3%,2004
 Large Hydro,29703,11428,1872,43003,14.9%,2004
 Natural Gas,104977,2302,10885,118164,40.8%,2004

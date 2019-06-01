@@ -128,14 +128,19 @@ my_ofile = r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bert
 for year, url in zipped_years:
     response = requests.get(url) 
     unparsed_rows = get_rows_electric(response, year)
-    parsed_rows = [row_parser(row) for row in unparsed_rows]
-    header = 'fuel_type,in_state_generation_GWh,percent_generation,northwest_imports_GWh,southwest_imports_GWh,energy_mix_GWh,power_mix,year'
+    parsed_rows = [row_parser(row) for row in unparsed_rows] 
+    if year < 2009:
+        header = 'fuel_type,in_state_generation_GWh,northwest_imports_GWh,southwest_imports_GWh,gross_system_power,percent_gross_system_power,year'
+    else:
+        header = 'fuel_type,in_state_generation_GWh,percent_generation,northwest_imports_GWh,southwest_imports_GWh,energy_mix_GWh,power_mix,year'
     parsed_rows.insert(0, header)
     document = '\n'.join(parsed_rows)
     ofile_yr = my_ofile.format(year)
     print(ofile_yr)
     with open(ofile_yr, 'w') as ofile:
         ofile.write(document)
+#year 2009-2016 
+#year 2008-2003 
 
 #importing electric generation data
 
