@@ -169,40 +169,67 @@ annual_generation = get_sums(electric_energy)
 def wind_percent(df, sum_df):
     df = df.loc[(df['fuel_type']) == 'Wind']
     merged_data = pd.merge(sum_df, df, on='year', how='inner')
-    merged_data['percent'] = merged_data['in_state_generation_GWh_y'] / merged_data['in_state_generation_GWh_x']
-    merged_data['percent_pretty'] = merged_data['percent'].map(lambda c:'{}%'.format(round(c*100,2)))
-    merged_data = merged_data[['year','percent','percent_pretty']]
+    merged_data['electric_percent'] = merged_data['in_state_generation_GWh_y'] / merged_data['in_state_generation_GWh_x']
+    merged_data['electric_percent_pretty'] = merged_data['electric_percent'].map(lambda c:'{}%'.format(round(c*100,2)))
+    merged_data = merged_data[['year','electric_percent','electric_percent_pretty']]
     return(merged_data)
     
 percent_wind = wind_percent(electric_energy, annual_generation)
 
-#make a table
-
 #wind energy data
-#merged_data['Consumption'] = merged_data['Consumption'].apply(lambda x: x*1000)
+#merged_data['Consumption'] = merged_data['Consumption'].apply(lambda x: x*100)
+def compare_wind_percent(wind_df, electric_df, percent_wind):
+    df_wind = wind_df.groupby(['year'],as_index=False).sum()
+    df_electric = get_sums(electric_df)
+    merged_data = pd.merge(df_electric, df_wind, on='year', how='right')
+    merged_data['in_state_generation_GWh'] = merged_data['in_state_generation_GWh'].apply(lambda x:x*1000)
+    merged_data['wind_percent'] = merged_data['net_MWh'] / merged_data['in_state_generation_GWh']
+    merged_data['wind_percent_pretty'] = merged_data['wind_percent'].map(lambda c:'{}%'.format(round(c*100,2)))
+    merged_data = merged_data[['year','wind_percent','wind_percent_pretty']]
+    merged_percent_data = pd.merge(percent_wind, merged_data, on='year', how='right')
+    merged_percent_data = merged_percent_data[:-2]
+    merged_percent_data = merged_percent_data[['year','wind_percent_pretty','electric_percent_pretty']]
+    return(merged_percent_data)
+    
+wind_energy_compared = compare_wind_percent(wind_energy, electric_energy, percent_wind)
+#use as a table?
+
+#plotting by fuel type 
+def clean_erroneous_fuel_types(df):
+    df.loc[(df['fuel_type'] == 'Coal 1')] = 'Coal'
+    df.loc[(df['fuel_type'] == 'Coal 2')] = 'Coal'
+    df.loc[(df['fuel_type'] == 'Solar 1')] = 'Solar'
+    df.loc[(df['fuel_type'] == 'Coal*')] = 'Coal'
+    df.loc[(df['fuel_type'] == 'Unspecified Sources of Power *')] = 'Other'
+    df.loc[(df['fuel_type'] == 'Unspecified Sources of Energy')] = 'Other'
+    df.loc[(df['fuel_type'] == 'Other (Petroleum Coke/Waste Heat)')] = 'Other'
+    return(df)
+    
+electric_energy = clean_erroneous_fuel_types(electric_energy)
+
+fig, ax = plt.subplots(figsize = (8,6))
+#electric_energy[electric_energy['fuel_type'] == 'Coal'].groupby('year')['in_state_generation_GWh'].mean().plot(color='m',label='Coal')
+electric_energy[electric_energy['fuel_type'] == 'Wind'].groupby('year')['in_state_generation_GWh'].mean().plot(color='c',label='Wind')
+electric_energy[electric_energy['fuel_type'] == 'Large Hydro'].groupby('year')['in_state_generation_GWh'].mean().plot(color='g',label='Large Hydro')
+electric_energy[electric_energy['fuel_type'] == 'Natural Gas'].groupby('year')['in_state_generation_GWh'].mean().plot(color='g',label='Natural Gas')
+ax.legend()
+
+fig, ax = plt.subplots(figsize = (8,6))
+new_df[new_df['REGION'] == 'MIDWEST'].groupby('DATE')['UNEMP_RATE'].mean().plot(color='m',label='Midwest')
+new_df[new_df['REGION'] == 'WEST COAST'].groupby('DATE')['UNEMP_RATE'].mean().plot(color='c',label='West Coast')
+ax.legend()
+ax.set_ylabel('Unemployment Rate')
+ax.set_xlabel('Date')
+
+electric_energy['in_state_generation_GWh'] = electric_energy['in_state_generation_GWh'].apply(pd.to_numeric, errors='coerce')
+
+'Coal', 'Large Hydro', 'Natural Gas', 'Nuclear', 'Renewables',
+       'Biomass', 'Geothermal', 'Small Hydro', 'Solar', 'Wind', 'Other',
+       'Oil',
+
 #
 #
 
-#make a table
-
-#graph the percentages together
-#
-#
-#
-
-#mapping by fuel type 
-#
-#
-#
-
-#ols regresstion
-#
-#
-#
-
-
-#total_consumption = total_consumption.drop(columns='Sector')
-#total_consumption = total_consumption.melt(id_vars='County', var_name='year', value_name='Consumption')
 
  
 import numpy as np
