@@ -154,9 +154,9 @@ for file in os.listdir(base_path):
     
 electric_energy = pd.concat(dfs, axis=0, ignore_index=True)
 
-#get sums of annual electricity generation
+#get sums of annual electricity generation 
 def get_sums(df):
-    df.loc[(df['in_state_generation_GWh'] == ' N/A ')] = 'nan'
+    df[(df['in_state_generation_GWh'] == ' N/A ')] = df[(df['in_state_generation_GWh'] == 'nan')]
     df['in_state_generation_GWh'] = df['in_state_generation_GWh'].apply(pd.to_numeric, errors='coerce')
     df = df.groupby(['year'], as_index=False).sum()
     df = df[:-1]
@@ -196,16 +196,17 @@ wind_energy_compared = compare_wind_percent(wind_energy, electric_energy, percen
 
 #plotting by fuel type 
 def clean_erroneous_fuel_types(df):
-    df.loc[(df['fuel_type'] == 'Coal 1')] = 'Coal'
-    df.loc[(df['fuel_type'] == 'Coal 2')] = 'Coal'
-    df.loc[(df['fuel_type'] == 'Solar 1')] = 'Solar'
-    df.loc[(df['fuel_type'] == 'Coal*')] = 'Coal'
-    df.loc[(df['fuel_type'] == 'Unspecified Sources of Power *')] = 'Other'
-    df.loc[(df['fuel_type'] == 'Unspecified Sources of Energy')] = 'Other'
-    df.loc[(df['fuel_type'] == 'Other (Petroleum Coke/Waste Heat)')] = 'Other'
+    df[(df['fuel_type'] == 'Coal 1')] = df[(df['fuel_type'] == 'Coal')]
+    df[(df['fuel_type'] == 'Coal 2')] = df[(df['fuel_type'] == 'Coal')]
+    df[(df['fuel_type'] == 'Solar 1')] = df[(df['fuel_type'] == 'Solar')]
+    df[(df['fuel_type'] == 'Coal*')] = df[(df['fuel_type'] == 'Coal')]
+    df[(df['fuel_type'] == 'Unspecified Sources of Power *')] = df[(df['fuel_type'] == 'Other')]
+    df[(df['fuel_type'] == 'Unspecified Sources of Power')] = df[(df['fuel_type'] == 'Other')]
+    df[(df['fuel_type'] == 'Unspecified Sources of Energy')] = df[(df['fuel_type'] == 'Other')]
+    df[(df['fuel_type'] == 'Other (Petroleum Coke/Waste Heat)')] = df[(df['fuel_type'] == 'Other')]
     return(df)
     
-electric_energy = clean_erroneous_fuel_types(electric_energy)
+electric_energy_clean = clean_erroneous_fuel_types(electric_energy)
 
 fig, ax = plt.subplots(figsize = (8,6))
 #electric_energy[electric_energy['fuel_type'] == 'Coal'].groupby('year')['in_state_generation_GWh'].mean().plot(color='m',label='Coal')
