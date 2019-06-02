@@ -4,9 +4,6 @@ Created on Fri May 17 12:12:05 2019
 
 @author: User02
 """
-#summarize the data with plots, tables and summary statistics, 
-#and then fit a simple model to it using Numpy or Statsmodels
-
 #importing 
 import requests
 from bs4 import BeautifulSoup
@@ -94,7 +91,12 @@ plt.title('Average Net MWh, Top Producing Companies', fontsize=20)
 ax.set_ylabel('Net MWh', fontsize=18)
 ax.set_xlabel('Year', fontsize=18)
 
-#scrapping in electric generation data
+#what percent of wind energy production is each company contributing 
+#
+#
+#
+
+#scrapping in electricity generation data
 urls = ['https://www.energy.ca.gov/almanac/electricity_data/system_power/{}_gross_system_power.html'.format(year) for year in range(2002, 2007)]
 otheryears = ['https://www.energy.ca.gov/almanac/electricity_data/system_power/{}_total_system_power.html'.format(year) for year in range(2007, 2016)]
 lastyear = ['https://www.energy.ca.gov/almanac/electricity_data/total_system_power.html']
@@ -117,6 +119,7 @@ def get_rows_electric(response, year):
     unparsed_rows = unparsed_rows[1:-1]
     return unparsed_rows   
 
+#using the same as previous row_parser function
 def row_parser(row):
     print (row)
     return ','.join(row)
@@ -151,7 +154,7 @@ for file in os.listdir(base_path):
     
 electric_energy = pd.concat(dfs, axis=0, ignore_index=True)
 
-#getting sums of annual electricity generation
+#get sums of annual electricity generation
 def get_sums(df):
     df.loc[(df['in_state_generation_GWh'] == ' N/A ')] = 'nan'
     df['in_state_generation_GWh'] = df['in_state_generation_GWh'].apply(pd.to_numeric, errors='coerce')
@@ -161,47 +164,47 @@ def get_sums(df):
 
 annual_generation = get_sums(electric_energy)
 
+#comparing the wind energy data between the two data sets
+#electric energy data
+def wind_percent(df, sum_df):
+    df = df.loc[(df['fuel_type']) == 'Wind']
+    merged_data = pd.merge(sum_df, df, on='year', how='inner')
+    merged_data['percent'] = merged_data['in_state_generation_GWh_y'] / merged_data['in_state_generation_GWh_x']
+    merged_data['percent_pretty'] = merged_data['percent'].map(lambda c:'{}%'.format(round(c*100,2)))
+    merged_data = merged_data[['year','percent','percent_pretty']]
+    return(merged_data)
+    
+percent_wind = wind_percent(electric_energy, annual_generation)
+
+#make a table
+
+#wind energy data
+#merged_data['Consumption'] = merged_data['Consumption'].apply(lambda x: x*1000)
+#
+#
+
+#make a table
+
+#graph the percentages together
+#
+#
+#
+
+#mapping by fuel type 
+#
+#
+#
+
+#ols regresstion
+#
+#
+#
 
 
+#total_consumption = total_consumption.drop(columns='Sector')
+#total_consumption = total_consumption.melt(id_vars='County', var_name='year', value_name='Consumption')
 
-
-consumption = pd.read_csv(r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\consumption\ca_electricity_consumption.csv')
-total_consumption = consumption[consumption['Sector'] == 'Total']
-total_consumption = total_consumption.drop(columns='Sector')
-total_consumption = total_consumption.melt(id_vars='County', var_name='year', value_name='Consumption')
-sum_consumption = total_consumption.groupby(['year'], as_index=False).sum()
-
-#also possible to find the sum using: total_consumption.sum(axis=0), this just uses melt
-
-#quick plot to see what is going on
-fig, ax = plt.subplots(figsize=(12,6))
-x = sum_consumption['year']
-y = sum_consumption['Consumption']
-plt.plot(x,y, color='m')
-
-#see what percent wind energy accounts for each year 
-net_to_merge = net_energy[['year', 'net_MWh']]
-net_to_merge['year']=net_to_merge['year'].astype(int) 
-sum_consumption['year']=sum_consumption['year'].astype(int) 
-merged_data = pd.merge(net_to_merge, sum_consumption, on='year', how='right')
-#convert KWh to MWh
-merged_data['Consumption'] = merged_data['Consumption'].apply(lambda x: x*1000)
-merged_data['Percent'] = merged_data['net_MWh']/merged_data['Consumption']
-merged_data['Percent_Pretty'] = merged_data['Percent'].map(lambda c:'{}%'.format(round(c*100,2)))
-
-#plotting the percent of wind energy production by consumption 
-fig, ax = plt.subplots(figsize=(12,6))
-x = merged_data['year']
-y = merged_data['Percent']
-plt.plot(x,y, color='m')
-ax.legend(frameon=False)
-ax.spines['right'].set_visible(False)
-ax.spines['top'].set_visible(False)
-plt.title('Percent Energy Consumption Supplied by Wind Energy', fontsize=20)
-ax.set_ylabel('Percent', fontsize=18)
-ax.set_xlabel('Year', fontsize=18)
-
-#percent of wind energy production supplied, controlling for consumption has risen 
+ 
 import numpy as np
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
