@@ -76,11 +76,6 @@ ax.spines['right'].set_visible(False)
 ax.spines['top'].set_visible(False)
 plt.savefig(r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\net_wind_energy_plt.png')
 
-#which companies are producing the greatest net MWh?
-#wind_energy_datetime['year'] = pd.to_datetime(wind_energy['year'], format='%Y')
-#sum_year_company = wind_energy.groupby(['year','company'], as_index=False).sum()
-#highest producing companies: FPL Energy Operating Services Inc, Terra-Gen Operating Company, Seawest Energy Group
-
 #plotting the average productions of the highest producing companies
 fig, ax = plt.subplots(figsize = (12,6))
 wind_energy[wind_energy['company'] == 'FPL Energy Operating Services Inc'].groupby('year')['net_MWh'].mean().plot(color = 'b', label='FPL Energy Operating Services Inc')
