@@ -77,8 +77,8 @@ ax.spines['top'].set_visible(False)
 plt.savefig(r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\net_wind_energy_plt.png')
 
 #which companies are producing the greatest net MWh?
-wind_energy['year'] = pd.to_datetime(wind_energy['year'], format='%Y')
-sum_year_company = wind_energy.groupby(['year','company'], as_index=False).sum()
+#wind_energy_datetime['year'] = pd.to_datetime(wind_energy['year'], format='%Y')
+#sum_year_company = wind_energy.groupby(['year','company'], as_index=False).sum()
 #highest producing companies: FPL Energy Operating Services Inc, Terra-Gen Operating Company, Seawest Energy Group
 
 #plotting the average productions of the highest producing companies
@@ -199,12 +199,11 @@ def compare_wind_percent(wind_df, electric_df, percent_wind):
     merged_data['wind_percent_pretty'] = merged_data['wind_percent'].map(lambda c:'{}%'.format(round(c*100,2)))
     merged_data = merged_data[['year','wind_percent','wind_percent_pretty']]
     merged_percent_data = pd.merge(percent_wind, merged_data, on='year', how='right')
-    merged_percent_data = merged_percent_data[:-2]
+    merged_percent_data = merged_percent_data[:-3]
     merged_percent_data = merged_percent_data[['year','wind_percent_pretty','electric_percent_pretty']]
     return(merged_percent_data)
     
 wind_energy_compared = compare_wind_percent(wind_energy, electric_energy, percent_wind)
-#use as a table?
 
 #plotting by fuel type 
 def clean_erroneous_fuel_types(df):
@@ -222,7 +221,7 @@ electric_energy_clean = clean_erroneous_fuel_types(electric_energy)
 
 #renewable energy sources 
 fig, ax = plt.subplots(figsize = (12,6))
-electric_energy[electric_energy['fuel_type'] == ['Wind'].groupby('year')['in_state_generation_GWh'].mean().plot(color='c',label='Wind')
+electric_energy[electric_energy['fuel_type'] == 'Wind'].groupby('year')['in_state_generation_GWh'].mean().plot(color='c',label='Wind')
 electric_energy[electric_energy['fuel_type'] == 'Large Hydro'].groupby('year')['in_state_generation_GWh'].mean().plot(color='g',label='Large Hydro')
 electric_energy[electric_energy['fuel_type'] == 'Renewables'].groupby('year')['in_state_generation_GWh'].mean().plot(color='m',label='Renewables')
 electric_energy[electric_energy['fuel_type'] == 'Biomass'].groupby('year')['in_state_generation_GWh'].mean().plot(color='k',label='Biomass')
