@@ -92,7 +92,7 @@ ax.set_ylabel('Net MWh', fontsize=18)
 ax.set_xlabel('Year', fontsize=18)
 plt.savefig(r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\net_wind_company_energy_plt.png')
 
-#what percent of wind energy production is each company contributing 
+#what percent of wind energy production is each company contributing? 
 def percent_company_energy(df):
     annual_sum = df.groupby(['year'], as_index=False)['net_MWh'].agg({'total_sum':'sum'})
     company_sum = df.groupby(['year', 'company'], as_index=False)['net_MWh'].agg({'comp_sum':'sum'})
@@ -132,6 +132,7 @@ def row_parser(row):
     print (row)
     return ','.join(row)
 
+#getting the tables/using the parsing function and reading them in as csvs
 my_ofile = r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\{}_electric_generation.csv'
 
 for year, url in zipped_years:
@@ -269,13 +270,13 @@ ax.spines['top'].set_visible(False)
 plt.savefig(r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\all_energy_plt.png')
 
 
-#ols 
- 
+#running an OLS regression line
 import numpy as np
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
 
-pd.to_numeric(wind_energy['year'])
-wind_model = smf.ols('net_MWh ~ year', data=wind_energy)
-results = wind_model.fit()
-results.summary()
+electric_model = smf.ols('in_state_generation_GWh ~ year + fuel_type', data=electric_energy)
+electric_results = electric_model.fit()
+electric_results.summary()
+#regression says that an increas in year is associated with an increase in 17 GWh of production, controlling for fuel type 
+#the coefficient on wind fuel is 1442 GWh of production
