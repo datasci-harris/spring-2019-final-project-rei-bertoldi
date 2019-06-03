@@ -57,6 +57,8 @@ for file in os.listdir(base_path):
     
 wind_energy = pd.concat(dfs, axis=0, ignore_index=True)
 
+wind_energy.to_csv(r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\CA_wind_energy_data.csv')
+
 #net energy over time
 net_energy = wind_energy.groupby('year', as_index=False).sum()
 
@@ -163,6 +165,8 @@ for file in os.listdir(base_path):
     
 electric_energy = pd.concat(dfs, axis=0, ignore_index=True)
 
+electric_energy.to_csv(r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\CA_electric_energy_data.csv')
+
 #get sums of annual electricity generation 
 def get_sums(df):
     df[(df['in_state_generation_GWh'] == ' N/A ')] = df[(df['in_state_generation_GWh'] == 'nan')]
@@ -218,7 +222,7 @@ electric_energy_clean = clean_erroneous_fuel_types(electric_energy)
 
 #renewable energy sources 
 fig, ax = plt.subplots(figsize = (12,6))
-electric_energy[electric_energy['fuel_type'] == 'Wind'].groupby('year')['in_state_generation_GWh'].mean().plot(color='c',label='Wind')
+electric_energy[electric_energy['fuel_type'] == ['Wind'].groupby('year')['in_state_generation_GWh'].mean().plot(color='c',label='Wind')
 electric_energy[electric_energy['fuel_type'] == 'Large Hydro'].groupby('year')['in_state_generation_GWh'].mean().plot(color='g',label='Large Hydro')
 electric_energy[electric_energy['fuel_type'] == 'Renewables'].groupby('year')['in_state_generation_GWh'].mean().plot(color='m',label='Renewables')
 electric_energy[electric_energy['fuel_type'] == 'Biomass'].groupby('year')['in_state_generation_GWh'].mean().plot(color='k',label='Biomass')
