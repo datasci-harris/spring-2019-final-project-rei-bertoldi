@@ -216,22 +216,30 @@ def compare_wind_percent(wind_df, electric_df, percent_wind):
     merged_percent_data = pd.merge(percent_wind, merged_data, on='year', how='right')
     merged_percent_data = merged_percent_data[:-3]
     merged_percent_data = merged_percent_data[['year','wind_percent_pretty','electric_percent_pretty']]
+    merged_percent_data = merged_percent_data.rename(columns = {'year':'Year',
+                                                                'wind_percent_pretty':'Wind Data',
+                                                                'electric_percent_pretty':'Electrcity Data'})
     return(merged_percent_data)
     
 wind_energy_compared = compare_wind_percent(wind_energy, electric_energy, percent_wind)
+print(wind_energy_compared)
 
 #plotting by fuel type 
+
 def clean_erroneous_fuel_types(df):
-    df[(df['fuel_type'] == 'Coal 1')] = df[(df['fuel_type'] == 'Coal')]
-    df[(df['fuel_type'] == 'Coal 2')] = df[(df['fuel_type'] == 'Coal')]
-    df[(df['fuel_type'] == 'Solar 1')] = df[(df['fuel_type'] == 'Solar')]
-    df[(df['fuel_type'] == 'Coal*')] = df[(df['fuel_type'] == 'Coal')]
-    df[(df['fuel_type'] == 'Unspecified Sources of Power *')] = df[(df['fuel_type'] == 'Other')]
-    df[(df['fuel_type'] == 'Unspecified Sources of Power')] = df[(df['fuel_type'] == 'Other')]
-    df[(df['fuel_type'] == 'Unspecified Sources of Energy')] = df[(df['fuel_type'] == 'Other')]
-    df[(df['fuel_type'] == 'Other (Petroleum Coke/Waste Heat)')] = df[(df['fuel_type'] == 'Other')]
+    fuel_names = [('Coal 1','Coal'),
+              ('Coal 2','Coal'),
+              ('Coal\*','Coal'),
+              ('Solar 1','Solar'),
+              ('Unspecified Sources of Power \*','Other'),
+              ('Unspecified Sources of Power','Other'),
+              ('Unspecified Sources of Energy','Other'),
+              ('Other\*', 'Other'),
+              ('Other \(Petroleum Coke/Waste Heat\)','Other')]
+    for old, new in fuel_names:
+        df['fuel_type'] = df['fuel_type'].str.replace(old, new)
     return(df)
-    
+
 electric_energy_clean = clean_erroneous_fuel_types(electric_energy)
 
 #renewable energy sources 
@@ -239,58 +247,62 @@ def plot_renewables(df):
     fuel_types = ['Wind','Large Hydro', 'Renewables', 'Biomass','Geothermal','Solar','Small Hydro']
     colors = ['c','g','m','k','b','r','mediumvioletred']
     zipped_fuel = zip(fuel_types,colors)
+    fig, ax = plt.subplots(figsize = (12,6))
     for types, colors in zipped_fuel:
         electric_energy[electric_energy['fuel_type'] ==
                     '{}'.format(types)].groupby('year')['in_state_generation_GWh'].mean().plot(color='{}'.format(colors),label='{}'.format(types))
-        plt.ylabel('GWh', fontsize=10)
-        plt.xlabel('Year', fontsize=10)
-        plt.title('Annual in State Renewable Energy Production (CA)', fontsize=15)
-        plt.legend(frameon=False, loc='best', fontsize='small')
-        plt.savefig(r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\renewable_energy_plt.png')
-
+    ax.set_ylabel('GWh', fontsize=10)
+    ax.set_xlabel('Year', fontsize=10)
+    ax.legend(frameon=False, loc='best', fontsize='small')
+    ax.set_title('Annual in State Renewable Energy Production (CA)', fontsize=15)
+    plt.savefig(r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\renewable_energy_plt.png')
+    plt.close()
 
 plot_renewables(electric_energy)  
-
-plt.close()
 
 #non-renewable energy sources
 def plot_nonrenewables(df):
     fuel_types = ['Coal','Natural Gas', 'Nuclear', 'Oil']
     colors = ['c','g','m','r']
     zipped_fuel = zip(fuel_types,colors)
+    fig, ax = plt.subplots(figsize = (12,6))
     for types, colors in zipped_fuel:
         electric_energy[electric_energy['fuel_type'] ==
                     '{}'.format(types)].groupby('year')['in_state_generation_GWh'].mean().plot(color='{}'.format(colors),label='{}'.format(types))
-        plt.ylabel('GWh', fontsize=10)
-        plt.xlabel('Year', fontsize=10)
-        plt.title('Annual in State Renewable Energy Production (CA)', fontsize=15)
-        plt.legend(frameon=False, loc='best', fontsize='small')
-        plt.savefig(r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\non_renewable_energy_plt.png')
+    ax.set_ylabel('GWh', fontsize=10)
+    ax.set_xlabel('Year', fontsize=10)
+    ax.set_title('Annual in State Non-Renewable Energy Production (CA)', fontsize=15)
+    ax.legend(frameon=False, loc='best', fontsize='small')
+    plt.savefig(r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\non_renewable_energy_plt.png')
+    plt.close()
         
 plot_nonrenewables(electric_energy)    
 
-plt.close()
-
 #function for the plot
 def plot_all_energy(df):
-    renewable_fuel = ['Wind', 'Renewables', 'Biomass','Geothermal','Solar','Small Hydro','Large Hydro'] 
-    non_renewable_fuel = ['Coal', 'Nuclear', 'Oil','Natural Gas']
-    zipped = zip(renewable_fuel,non_renewable_fuel)    
-    for renewable_fuel, non_renewable_fuel in zipped:
+    fuel_color = {'Wind': 'g',
+                  'Renewables':'g', 
+                  'Biomass':'g',
+                  'Geothermal':'g',
+                  'Solar':'g',
+                  'Small Hydro':'g',
+                  'Large Hydro':'g', 
+                  'Coal':'m', 
+                  'Nuclear':'m', 
+                  'Oil':'m',
+                  'Natural Gas':'m'} 
+    fig, ax = plt.subplots(figsize = (12,6))
+    for fuel, color in fuel_color.items():
         electric_energy[electric_energy['fuel_type'] ==
-                    '{}'.format(renewable_fuel)].groupby('year')['in_state_generation_GWh'].mean().plot(color='g',label='{}'.format(renewable_fuel))                        
-        electric_energy[electric_energy['fuel_type'] ==
-                     '{}'.format(non_renewable_fuel)].groupby('year')['in_state_generation_GWh'].mean().plot(color='m',label='{}'.format(non_renewable_fuel))                       
-        plt.ylabel('GWh', fontsize=10)
-        plt.xlabel('Year', fontsize=10)                        
-        plt.title('Annual in State Energy Production (CA)', fontsize=15)
-        plt.legend(frameon=False, loc='best', fontsize='small') 
-        plt.savefig(r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\all_energy_plt.png')
-           
+                    '{}'.format(fuel)].groupby('year')['in_state_generation_GWh'].mean().plot(color='{}'.format(color),label='{}'.format(fuel))                                              
+    ax.set_ylabel('GWh', fontsize=10)
+    ax.set_xlabel('Year', fontsize=10)                        
+    ax.set_title('Annual in State Energy Production (CA)', fontsize=15)
+    ax.legend(frameon=False, loc='best', fontsize='small') 
+    plt.savefig(r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\all_energy_plt.png')
+    plt.close()
         
 plot_all_energy(electric_energy)
-
-plt.close()
 
 #running an OLS regression line
 import numpy as np
@@ -300,5 +312,5 @@ import statsmodels.formula.api as smf
 electric_model = smf.ols('in_state_generation_GWh ~ year + fuel_type', data=electric_energy)
 electric_results = electric_model.fit()
 electric_results.summary()
-#regression says that an increas in year is associated with an increase in 17 GWh of production, controlling for fuel type 
+#regression says that an increase in year is associated with an increase in 17 GWh of production, controlling for fuel type 
 #the coefficient on wind fuel is 1442 GWh of production
