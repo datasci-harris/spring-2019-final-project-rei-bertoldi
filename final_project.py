@@ -80,6 +80,8 @@ def plot_net_wind(df):
 
 plot_net_wind(wind_energy)
 
+plt.close()
+
 #which companies are producing the greatest net MWh?
 sum_year_company = wind_energy.groupby(['year','company'], as_index=False).sum()
 #highest producing companies: FPL Energy Operating Services Inc, Terra-Gen Operating Company, Seawest Energy Group
@@ -102,8 +104,10 @@ def plot_net_wind_company(df):
     ax.set_ylabel('Net MWh', fontsize=18)
     ax.set_xlabel('Year', fontsize=18)
     plt.savefig(r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\net_wind_company_energy_plt.png')
-
+    
 plot_net_wind_company(wind_energy)
+
+plt.close()
 
 #what percent of wind energy production is each company contributing? 
 def percent_company_energy(df):
@@ -243,8 +247,11 @@ def plot_renewables(df):
         plt.title('Annual in State Renewable Energy Production (CA)', fontsize=15)
         plt.legend(frameon=False, loc='best', fontsize='small')
         plt.savefig(r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\renewable_energy_plt.png')
-   
+
+
 plot_renewables(electric_energy)  
+
+plt.close()
 
 #non-renewable energy sources
 def plot_nonrenewables(df):
@@ -259,49 +266,31 @@ def plot_nonrenewables(df):
         plt.title('Annual in State Renewable Energy Production (CA)', fontsize=15)
         plt.legend(frameon=False, loc='best', fontsize='small')
         plt.savefig(r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\non_renewable_energy_plt.png')
+        
+plot_nonrenewables(electric_energy)    
 
-plot_nonrenewables(electric_energy)   
+plt.close()
 
-#all together
-
+#function for the plot
 def plot_all_energy(df):
-    renewable_fuel_types = ['Wind','Large Hydro', 'Renewables', 'Biomass','Geothermal','Solar','Small Hydro'] 
-    non_renewable_fuel_types = ['Coal','Natural Gas', 'Nuclear', 'Oil']
-    for types in enumerate(renewable_fuel_types, non_renewable_fuel_types):
+    renewable_fuel = ['Wind', 'Renewables', 'Biomass','Geothermal','Solar','Small Hydro','Large Hydro'] 
+    non_renewable_fuel = ['Coal', 'Nuclear', 'Oil','Natural Gas']
+    zipped = zip(renewable_fuel,non_renewable_fuel)    
+    for renewable_fuel, non_renewable_fuel in zipped:
         electric_energy[electric_energy['fuel_type'] ==
-                    '{}'.format(types)].groupby('year')['in_state_generation_GWh'].mean().plot(color='g',label='{}'.format(types))
+                    '{}'.format(renewable_fuel)].groupby('year')['in_state_generation_GWh'].mean().plot(color='g',label='{}'.format(renewable_fuel))                        
         electric_energy[electric_energy['fuel_type'] ==
-                    '{}'.format(types)].groupby('year')['in_state_generation_GWh'].mean().plot(color='m',label='{}'.format(types))
+                     '{}'.format(non_renewable_fuel)].groupby('year')['in_state_generation_GWh'].mean().plot(color='m',label='{}'.format(non_renewable_fuel))                       
         plt.ylabel('GWh', fontsize=10)
-        plt.xlabel('Year', fontsize=10)
-        plt.title('Annual in State Renewable Energy Production (CA)', fontsize=15)
-        plt.legend(frameon=False, loc='best', fontsize='small')
-#        plt.savefig(r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\non_renewable_energy_plt.png')
+        plt.xlabel('Year', fontsize=10)                        
+        plt.title('Annual in State Energy Production (CA)', fontsize=15)
+        plt.legend(frameon=False, loc='best', fontsize='small') 
+        plt.savefig(r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\all_energy_plt.png')
+           
+        
+plot_all_energy(electric_energy)
 
-plot_all_energy(electric_energy) 
-
-
-fig, ax = plt.subplots(figsize = (12,6))
-electric_energy[electric_energy['fuel_type'] == 'Wind'].groupby('year')['in_state_generation_GWh'].mean().plot(color='g',label='Wind')
-electric_energy[electric_energy['fuel_type'] == 'Large Hydro'].groupby('year')['in_state_generation_GWh'].mean().plot(color='g',label='Large Hydro')
-electric_energy[electric_energy['fuel_type'] == 'Renewables'].groupby('year')['in_state_generation_GWh'].mean().plot(color='g',label='Renewables')
-electric_energy[electric_energy['fuel_type'] == 'Biomass'].groupby('year')['in_state_generation_GWh'].mean().plot(color='g',label='Biomass')
-electric_energy[electric_energy['fuel_type'] == 'Geothermal'].groupby('year')['in_state_generation_GWh'].mean().plot(color='g',label='Geothermal')
-electric_energy[electric_energy['fuel_type'] == 'Solar'].groupby('year')['in_state_generation_GWh'].mean().plot(color='g',label='Solar')
-electric_energy[electric_energy['fuel_type'] == 'Small Hydro'].groupby('year')['in_state_generation_GWh'].mean().plot(color='g',label='Small Hydro')
-electric_energy[electric_energy['fuel_type'] == 'Wind'].groupby('year')['in_state_generation_GWh'].mean().plot(color='g',label='Wind')
-electric_energy[electric_energy['fuel_type'] == 'Coal'].groupby('year')['in_state_generation_GWh'].mean().plot(color='m',label='Coal')
-electric_energy[electric_energy['fuel_type'] == 'Natural Gas'].groupby('year')['in_state_generation_GWh'].mean().plot(color='m',label='Natural Gas')
-electric_energy[electric_energy['fuel_type'] == 'Nuclear'].groupby('year')['in_state_generation_GWh'].mean().plot(color='m',label='Nuclear')
-electric_energy[electric_energy['fuel_type'] == 'Oil'].groupby('year')['in_state_generation_GWh'].mean().plot(color='m',label='Oil')
-ax.legend()
-plt.title('Annual in State Energy Production (CA)', fontsize=20)
-ax.set_ylabel('GWh', fontsize=18)
-ax.set_xlabel('Year', fontsize=18)
-ax.spines['right'].set_visible(False)
-ax.spines['top'].set_visible(False)
-plt.savefig(r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\all_energy_plt.png')
-
+plt.close()
 
 #running an OLS regression line
 import numpy as np
