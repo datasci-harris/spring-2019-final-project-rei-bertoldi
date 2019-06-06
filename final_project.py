@@ -108,7 +108,6 @@ def plot_net_wind_company(df):
 
 plot_net_wind_company(wind_energy)
 
-
 #what percent of wind energy production is each company contributing? 
 def percent_company_energy(df):
     annual_sum = df.groupby(['year'], as_index=False)['net_MWh'].agg({'total_sum':'sum'})
@@ -224,7 +223,6 @@ def compare_wind_percent(wind_df, electric_df, percent_wind):
 wind_energy_compared = compare_wind_percent(wind_energy, electric_energy, percent_wind)
 
 #plotting by fuel type 
-
 def clean_erroneous_fuel_types(df):
     fuel_names = [('Coal 1','Coal'),
               ('Coal 2','Coal'),
