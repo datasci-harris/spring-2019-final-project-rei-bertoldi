@@ -308,6 +308,25 @@ import statsmodels.formula.api as smf
 
 electric_model = smf.ols('in_state_generation_GWh ~ year + fuel_type', data=electric_energy)
 electric_results = electric_model.fit()
-electric_results.summary()
+ols_results = electric_results.summary()
 #regression says that an increase in year is associated with an increase in 17 GWh of production, controlling for fuel type 
 #the coefficient on wind fuel is 1442 GWh of production
+
+def split_column(var):
+    return var.split('.')[-1].rstrip(']')
+
+def results_summary(results):
+    pvals = results.pvalues
+    coeff = results.params
+    results_df = pd.DataFrame({"pvals":pvals,
+                               "coeff":coeff,
+                               })
+    results_df = results_df.reset_index()
+    results_df['index'] = results_df['index'].map(lambda x:split_column(x))
+    results_df['index'] = results_df['index'].str.replace('year', 'Year') 
+    results_df = results_df.rename(columns={'index':'Fuel Type', 'pvals':'P Values', 'coeff':'Coefficient'})
+    return(results_df)
+        
+ols_results = results_summary(electric_results)
+
+
