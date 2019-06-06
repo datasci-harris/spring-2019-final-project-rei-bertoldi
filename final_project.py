@@ -90,7 +90,6 @@ plot_net_wind(wind_energy)
 sum_year_company = wind_energy.groupby(['year','company'], as_index=False).sum()
 #highest producing companies: FPL Energy Operating Services Inc, Terra-Gen Operating Company, Seawest Energy Group
 
-
 #plotting the average productions of the highest producing companies
 def plot_net_wind_company(df):
     fig, ax = plt.subplots(figsize = (12,6))
@@ -329,4 +328,4 @@ def results_summary(results):
         
 ols_results = results_summary(electric_results)
 
-
+ols_results.to_csv(r'C:\Users\User02\Documents\GitHub\spring-2019-final-project-rei-bertoldi\ols_results.csv', index=False)
